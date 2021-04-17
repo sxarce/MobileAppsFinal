@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        EditText editText = findViewById(R.id.editTextTextPersonName);
-        CalendarView calendarView = findViewById(R.id.calendarView);
+         editText = findViewById(R.id.editTextTextPersonName);
+         calendarView = findViewById(R.id.calendarView);
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
