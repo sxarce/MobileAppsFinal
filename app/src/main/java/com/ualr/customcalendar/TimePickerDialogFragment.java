@@ -22,7 +22,7 @@ public class TimePickerDialogFragment extends DialogFragment implements TimePick
     NoticeDialogListener listener;
 
     public interface NoticeDialogListener{
-        public void onDialogTimeClick(String date);
+        void onDialogTimeClick(int hourOfDay, int minute, String timeType, String time);
     }
 
     @Override
@@ -51,13 +51,18 @@ public class TimePickerDialogFragment extends DialogFragment implements TimePick
     public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
         Log.d(TAG, String.format("Time selected- %d h %d min", hourOfDay, minute));
         String time = "";
+        String timeType = "";
+
         if(hourOfDay > 12){
-            time = (hourOfDay - 12) + ":" + minute + "PM";
+            hourOfDay = hourOfDay -12;
+            timeType = "PM";
+            time =hourOfDay+ ":" + minute +" " + timeType;
         }
         else{
-            time = hourOfDay + ":" + minute + "AM";
+            timeType = "AM";
+            time = hourOfDay + ":" + minute + " " + timeType;
         }
-        listener.onDialogTimeClick(time);
+        listener.onDialogTimeClick(hourOfDay, minute, timeType, time);
 
     }
 }

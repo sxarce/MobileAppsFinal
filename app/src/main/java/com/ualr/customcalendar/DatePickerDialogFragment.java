@@ -21,7 +21,7 @@ public class DatePickerDialogFragment extends DialogFragment implements DatePick
     NoticeDialogListener listener;
 
     public interface NoticeDialogListener{
-        public void onDialogDateClick(String date);
+        void onDialogDateClick(int nmonth, int nday, int nyear, String ndate);
     }
 
     @Override
@@ -50,6 +50,7 @@ public class DatePickerDialogFragment extends DialogFragment implements DatePick
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
         Log.d(TAG, String.format("Date selected- year %d, month %d, day %d", year, month, day));
-        listener.onDialogDateClick(String.format(" %d/%d/%d", month+1, day, year));
+        String date = String.format(" %d/%d/%d", month+1, day, year);
+        listener.onDialogDateClick(month+1, day, year, date);
     }
 }
