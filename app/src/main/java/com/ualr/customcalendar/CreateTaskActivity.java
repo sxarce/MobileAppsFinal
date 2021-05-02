@@ -1,17 +1,12 @@
 package com.ualr.customcalendar;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 
-import com.google.android.material.button.MaterialButton;
 import com.ualr.customcalendar.databinding.ActivityCreatetaskBinding;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
-
-import java.util.Calendar;
 
 public class CreateTaskActivity extends AppCompatActivity implements DatePickerDialogFragment.NoticeDialogListener,TimePickerDialogFragment.NoticeDialogListener{
 
