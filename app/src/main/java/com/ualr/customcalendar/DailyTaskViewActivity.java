@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ualr.customcalendar.databinding.ActivityDailytaskviewBinding;
 
@@ -64,11 +65,30 @@ public class DailyTaskViewActivity extends AppCompatActivity {
         Log.d(TAG, String.format("requestCode: %s, resultCode: %s",String.valueOf(requestCode), String.valueOf(resultCode)));
         if (requestCode == TASK_CODE_REQUEST && resultCode == RESULT_OK){
             Task newTask = data.getParcelableExtra(TASK_KEY);
-            String thisMonth = (String.valueOf(newTask.getMonth()));
-            Log.d(TAG, String.format("Received %s", thisMonth));
-            dMonth.setText(thisMonth);
+            int thisMonth = newTask.getMonth();
+            int thisDay = newTask.getDay();
+
+            AddData(newTask.getYear(), newTask.getMonth(), newTask.getDay(), newTask.getHour(),
+                    newTask.getMin(), newTask.getTimeType(), newTask.getTitle(), newTask.getPriority(), newTask.getDescription());
         };
 
+    }
+
+    public void AddData(int year, int month, int day, int hour, int min, String time_type,
+                        String title, String priority, String description){
+        boolean insertData = mDatabaseHelper.addData(year,month,day,hour,min,time_type,
+                title,priority,description);
+
+        if(insertData){
+            toastMessage("Data Successfully Inserted!");
+        } else {
+            toastMessage("Something went wrong");
+        }
+    }
+
+
+    private void toastMessage(String message){
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
 
 }
