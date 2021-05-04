@@ -82,7 +82,8 @@
             android:hint="Task Title"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:inputType="text"/>
 
         <EditText
             android:id="@+id/Priority"
@@ -94,7 +95,8 @@
             android:hint="Task Priorty (1-3)"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/TaskTitle" />
+            app:layout_constraintTop_toBottomOf="@id/TaskTitle"
+            android:inputType="number"/>
 
         <EditText
             android:id="@+id/TaskDescription"
@@ -107,7 +109,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/Priority" />
+            app:layout_constraintTop_toBottomOf="@id/Priority"
+            android:inputType="text"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.button.MaterialButton
