@@ -71,6 +71,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
 
         Intent intent = getIntent();
         intent.putExtra(DailyTaskViewActivity.TASK_KEY, (Parcelable) newTask);
+        setResult(DailyTaskViewActivity.RESULT_OK, intent);
         finish();
     }
 }

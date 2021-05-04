@@ -1,6 +1,9 @@
 package com.ualr.customcalendar;
 
-public class Task {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Task implements Parcelable {
     int year;
     int month;
     int day;
@@ -22,6 +25,18 @@ public class Task {
         this.priority = priority;
         this.description = description;
     }
+
+    public static final Creator<Task> CREATOR = new Creator<Task>() {
+        @Override
+        public Task createFromParcel(Parcel in) {
+            return new Task(in);
+        }
+
+        @Override
+        public Task[] newArray(int size) {
+            return new Task[size];
+        }
+    };
 
     public int getYear() {
         return year;
@@ -93,5 +108,36 @@ public class Task {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(this.year);
+        parcel.writeInt(this.month);
+        parcel.writeInt(this.day);
+        parcel.writeInt(this.hour);
+        parcel.writeInt(this.min);
+        parcel.writeString(this.timeType);
+        parcel.writeString(this.title);
+        parcel.writeString(this.priority);
+        parcel.writeString(this.description);
+    }
+
+    protected Task(Parcel in){
+        this.year = in.readInt();
+        this.month = in.readInt();
+        this.day = in.readInt();
+        this.hour = in.readInt();
+        this.min = in.readInt();
+        this.timeType = in.readString();
+        this.title = in.readString();
+        this.priority = in.readString();
+        this.description = in.readString();
+
     }
 }
