@@ -10,6 +10,8 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import java.time.Month;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String TAG = "DatabaseHelper";
@@ -77,5 +79,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     String query = "SELECT * FROM " + TABLE_NAME;
     Cursor data = db.rawQuery(query, null);
     return data;
+    }
+
+    public Cursor getDataForDate(int month, int day, int year){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE "+ COL2 +"=" + year + " and " + COL3 + "=" + month + " and " + COL4 + "=" + day;
+        //String query1 = String.format("SELECT * FROM %d WHERE", TABLE_NAME);
+        Cursor data = db.rawQuery(query, null);
+        return data;
     }
 }
