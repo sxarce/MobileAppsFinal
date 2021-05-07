@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +25,7 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class DailyTaskViewActivity extends AppCompatActivity {
+public class DailyTaskViewActivity extends AppCompatActivity implements DatePickerDialogFragment.NoticeDialogListener{
 
     private ActivityDailytaskviewBinding mBinding;
     public static final String EXTRA_CONTACT = "Database";
@@ -56,7 +57,7 @@ public class DailyTaskViewActivity extends AppCompatActivity {
         c.getTime();
 
         getAndSetDate();
-        populateListView();
+        populateListViewFromDate(cMonth,cDay,cYear);
     }
 
     private void getAndSetDate(){
@@ -69,6 +70,27 @@ public class DailyTaskViewActivity extends AppCompatActivity {
     private void populateListView() {
         Log.d(TAG, "populateListView: Displaying data in the list view");
         Cursor data = mDatabaseHelper.getData();
+        ArrayList<Task> listData = new ArrayList<>();
+        while(data.moveToNext()){
+            Task task = new Task();
+            task.setYear(data.getInt(data.getColumnIndex("year")));
+            task.setDay(data.getInt(data.getColumnIndex("day")));
+            task.setMonth(data.getInt(data.getColumnIndex("month")));
+            task.setHour(data.getInt(data.getColumnIndex("hour")));
+            task.setMin(data.getInt(data.getColumnIndex("min")));
+            task.setTimeType(data.getString(data.getColumnIndex("time_type")));
+            task.setTitle(data.getString(data.getColumnIndex("task_title")));
+            task.setPriority(data.getInt(data.getColumnIndex("task_priority")));
+            task.setDescription(data.getString(data.getColumnIndex("task_description")));
+            listData.add(task);
+        }
+        adapter = new TaskAdapter(this, listData);
+        mListView.setAdapter(adapter);
+    }
+
+    private void populateListViewFromDate(int month, int day, int year) {
+        Log.d(TAG, "populateListView: Displaying data in the list view");
+        Cursor data = mDatabaseHelper.getDataForDate(month,day,year);
         ArrayList<Task> listData = new ArrayList<>();
         while(data.moveToNext()){
             Task task = new Task();
@@ -115,7 +137,7 @@ public class DailyTaskViewActivity extends AppCompatActivity {
             AddData(newTask.getYear(), newTask.getMonth(), newTask.getDay(), newTask.getHour(),
                     newTask.getMin(), newTask.getTimeType(), newTask.getTitle(), newTask.getPriority(), newTask.getDescription());
 
-            populateListView();
+            populateListViewFromDate(cMonth,cDay,cYear);
         };
 
     }
@@ -137,4 +159,18 @@ public class DailyTaskViewActivity extends AppCompatActivity {
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
 
+    public void onFab(View view){
+            DatePickerDialogFragment dialog = new DatePickerDialogFragment();
+            dialog.show(getSupportFragmentManager(), TAG);
+    }
+
+    @Override
+    public void onDialogDateClick(int month, int day, int year, String date){
+        cMonth = month;
+        cDay = day;
+        cYear = year;
+        c.set(year,month-1,day);
+        getAndSetDate();
+        populateListViewFromDate(cMonth,cDay,cYear);
+    }
 }
