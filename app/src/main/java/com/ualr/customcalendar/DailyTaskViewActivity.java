@@ -1,11 +1,15 @@
 package com.ualr.customcalendar;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +20,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import java.lang.reflect.Array;
+import java.time.Year;
+import java.util.ArrayList;
 
 public class DailyTaskViewActivity extends AppCompatActivity {
 
@@ -28,19 +36,37 @@ public class DailyTaskViewActivity extends AppCompatActivity {
 
     private static final String TAG = "DailyTaskView";
 
-
-    TextView dMonth, dDay, dYear, dTitle;
+    private ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dailytaskview);
         mDatabaseHelper = new DatabaseHelper(this);
+        mListView = (ListView) findViewById(R.id.ListView);
 
-        dMonth = findViewById(R.id.display_month);
-        dDay = findViewById(R.id.display_day);
-        dYear = findViewById(R.id.display_year);
-        dTitle = findViewById(R.id.display_title);
+
+    }
+
+    private void populateListView() {
+        Log.d(TAG, "populateListView: Displaying data in the list view");
+        Cursor data = mDatabaseHelper.getData();
+        ArrayList<Task> listData = new ArrayList<>();
+        while(data.moveToNext()){
+            Task task = new Task();
+            task.setYear(data.getInt(data.getColumnIndex("year")));
+            task.setDay(data.getInt(data.getColumnIndex("day")));
+            task.setMonth(data.getInt(data.getColumnIndex("month")));
+            task.setHour(data.getInt(data.getColumnIndex("hour")));
+            task.setMin(data.getInt(data.getColumnIndex("min")));
+            task.setTimeType(data.getString(data.getColumnIndex("time_type")));
+            task.setTitle(data.getString(data.getColumnIndex("task_title")));
+            task.setPriority(data.getInt(data.getColumnIndex("task_priority")));
+            task.setDescription(data.getString(data.getColumnIndex("task_description")));
+            listData.add(task);
+        }
+        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
+        mListView.setAdapter(adapter);
     }
 
     @Override
@@ -70,12 +96,14 @@ public class DailyTaskViewActivity extends AppCompatActivity {
 
             AddData(newTask.getYear(), newTask.getMonth(), newTask.getDay(), newTask.getHour(),
                     newTask.getMin(), newTask.getTimeType(), newTask.getTitle(), newTask.getPriority(), newTask.getDescription());
+
+            populateListView();
         };
 
     }
 
     public void AddData(int year, int month, int day, int hour, int min, String time_type,
-                        String title, String priority, String description){
+                        String title, int priority, String description){
         boolean insertData = mDatabaseHelper.addData(year,month,day,hour,min,time_type,
                 title,priority,description);
 

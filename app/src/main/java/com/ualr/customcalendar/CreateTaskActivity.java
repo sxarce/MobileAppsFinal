@@ -2,6 +2,7 @@ package com.ualr.customcalendar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.button.MaterialButton;
 import com.ualr.customcalendar.databinding.ActivityCreatetaskBinding;
 
 import android.content.Intent;
@@ -20,7 +21,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
     private ActivityCreatetaskBinding mBinding;
     private static final String TAG = CreateTaskActivity.class.getSimpleName();
     private TextView dateTV, timeTV;
-    private EditText titleET, priorityET, descriptionET;
+    private EditText titleET, descriptionET;
     private Task newTask;
     DatabaseHelper mDatabaseHelper;
 
@@ -31,7 +32,6 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         dateTV = findViewById(R.id.date_view);
         timeTV = findViewById(R.id.time_view);
         titleET = findViewById(R.id.TaskTitle);
-        priorityET = findViewById(R.id.Priority);
         descriptionET = findViewById(R.id.TaskDescription);
         mDatabaseHelper = getIntent().getParcelableExtra(DailyTaskViewActivity.EXTRA_CONTACT);
     }
@@ -64,8 +64,18 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
 
     public void onSaveTaskButtonClick(View view){
         String task = this.titleET.getText().toString();
-        String task_priority = this.priorityET.getText().toString();
+        int task_priority = 0;
         String task_description = this.descriptionET.getText().toString();
+
+        MaterialButton p_low, p_mid, p_high;
+        p_low = findViewById(R.id.btn_low);
+        p_mid = findViewById(R.id.btn_med);
+        p_high = findViewById(R.id.btn_high);
+
+        if(p_low.isChecked()) task_priority = 0;
+        else if (p_mid.isChecked()) task_priority = 1;
+        else task_priority = 2;
+
 
         newTask = new Task(nYear,nMonth,nDay,nHour,nMin,nTimeType,task,task_priority,task_description);
 

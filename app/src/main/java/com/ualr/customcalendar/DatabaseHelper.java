@@ -2,6 +2,7 @@ package com.ualr.customcalendar;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -31,9 +32,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE task_table (ID INTEGER PRIMARY KEY AUTOINCREMENT, year INTEGER, " +
+        String createTable = "CREATE TABLE " + TABLE_NAME +"(ID INTEGER PRIMARY KEY AUTOINCREMENT, year INTEGER, " +
                 "month INTEGER, day INTEGER, hour INTEGER, min INTEGER, time_type TEXT, task_title TEXT, " +
-                "task_priority TEXT, task_description TEXT)";
+                "task_priority INTEGER, task_description TEXT)";
 
         /*
         String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -50,7 +51,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean addData(int year, int month, int day, int hour, int min, String time_type,
-                           String title, String priority, String description){
+                           String title, int priority, String description){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL2, year);
@@ -69,5 +70,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long result = db.insert(TABLE_NAME, null, contentValues);
 
         return result != -1;
+    }
+
+    public Cursor getData(){
+    SQLiteDatabase db = this.getWritableDatabase();
+    String query = "SELECT * FROM " + TABLE_NAME;
+    Cursor data = db.rawQuery(query, null);
+    return data;
     }
 }

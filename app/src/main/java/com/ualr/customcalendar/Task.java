@@ -11,10 +11,13 @@ public class Task implements Parcelable {
     int min;
     String timeType;
     String title;
-    String priority;
+    int priority;
     String description;
 
-    public Task(int year, int month, int day, int hour, int min, String timeType, String title, String priority, String description) {
+    public Task() {
+    }
+
+    public Task(int year, int month, int day, int hour, int min, String timeType, String title, int priority, String description) {
         this.year = year;
         this.month = month;
         this.day = day;
@@ -37,6 +40,18 @@ public class Task implements Parcelable {
             return new Task[size];
         }
     };
+
+    public Task(Parcel in) {
+        this.year = in.readInt();
+        this.month = in.readInt();
+        this.day = in.readInt();
+        this.hour = in.readInt();
+        this.min = in.readInt();
+        this.timeType = in.readString();
+        this.title = in.readString();
+        this.priority = in.readInt();
+        this.description = in.readString();
+    }
 
     public int getYear() {
         return year;
@@ -94,11 +109,11 @@ public class Task implements Parcelable {
         this.title = title;
     }
 
-    public String getPriority() {
+    public int getPriority() {
         return priority;
     }
 
-    public void setPriority(String priority) {
+    public void setPriority(int priority) {
         this.priority = priority;
     }
 
@@ -124,20 +139,8 @@ public class Task implements Parcelable {
         parcel.writeInt(this.min);
         parcel.writeString(this.timeType);
         parcel.writeString(this.title);
-        parcel.writeString(this.priority);
+        parcel.writeInt(this.priority);
         parcel.writeString(this.description);
     }
 
-    protected Task(Parcel in){
-        this.year = in.readInt();
-        this.month = in.readInt();
-        this.day = in.readInt();
-        this.hour = in.readInt();
-        this.min = in.readInt();
-        this.timeType = in.readString();
-        this.title = in.readString();
-        this.priority = in.readString();
-        this.description = in.readString();
-
-    }
 }
