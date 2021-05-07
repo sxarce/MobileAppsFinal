@@ -37,6 +37,7 @@ public class DailyTaskViewActivity extends AppCompatActivity {
     private static final String TAG = "DailyTaskView";
 
     private ListView mListView;
+    TaskAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +46,7 @@ public class DailyTaskViewActivity extends AppCompatActivity {
         mDatabaseHelper = new DatabaseHelper(this);
         mListView = (ListView) findViewById(R.id.ListView);
 
-
+        populateListView();
     }
 
     private void populateListView() {
@@ -65,7 +66,7 @@ public class DailyTaskViewActivity extends AppCompatActivity {
             task.setDescription(data.getString(data.getColumnIndex("task_description")));
             listData.add(task);
         }
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
+        adapter = new TaskAdapter(this, listData);
         mListView.setAdapter(adapter);
     }
 
