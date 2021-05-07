@@ -2,13 +2,12 @@ package com.ualr.customcalendar;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.icu.text.SimpleDateFormat;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,12 +17,12 @@ import com.ualr.customcalendar.databinding.ActivityDailytaskviewBinding;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
-import java.lang.reflect.Array;
-import java.time.Year;
+import java.time.Month;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class DailyTaskViewActivity extends AppCompatActivity {
 
@@ -39,14 +38,32 @@ public class DailyTaskViewActivity extends AppCompatActivity {
     private ListView mListView;
     TaskAdapter adapter;
 
+    TextView datetv;
+    Calendar c;
+    private int cMonth;
+    private int cDay;
+    private int cYear;
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dailytaskview);
         mDatabaseHelper = new DatabaseHelper(this);
         mListView = (ListView) findViewById(R.id.ListView);
+        datetv = (TextView) findViewById(R.id.dateTV);
+        c = Calendar.getInstance();
+        c.getTime();
 
+        getAndSetDate();
         populateListView();
+    }
+
+    private void getAndSetDate(){
+        cMonth =c.get(Calendar.MONTH) +1;
+        cDay = c.get(Calendar.DAY_OF_MONTH);
+        cYear = c.get(Calendar.YEAR);
+        datetv.setText(String.format("%d/%d/%d", cMonth, cDay, cYear));
     }
 
     private void populateListView() {
