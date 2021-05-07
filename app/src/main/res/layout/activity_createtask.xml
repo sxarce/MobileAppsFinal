@@ -5,192 +5,193 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    android:background="@color/grey_200">
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/date_time_card"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="20dp">
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/date_time_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/grey_200"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/dateButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:onClick="showDatePickerDialog"
-            android:text="select date"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="10dp"/>
-
-        <TextView
-            android:id="@+id/date_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="DD/MM/YYYY"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@id/dateButton"
-            app:layout_constraintLeft_toRightOf="@id/dateButton"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/dateButton" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/timeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:gravity="center"
-            android:onClick="showTimePickerDialog"
-            android:text="select time"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/dateButton" />
-
-        <TextView
-            android:id="@+id/time_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="HH:MM"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@id/timeButton"
-            app:layout_constraintLeft_toRightOf="@id/timeButton"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/timeButton" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/date_time_card"
-        android:layout_margin="20dp">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/EditTextGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/submit_button"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/date_time_view"
-        app:layout_constraintVertical_bias="0.201">
-
-        <EditText
-            android:id="@+id/TaskTitle"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/date_time_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:hint="Task Title"
+            android:layout_margin="20dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:inputType="text"/>
+            app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/TaskDescription"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/date_time_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/dateButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:onClick="showDatePickerDialog"
+                    android:text="select date"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/date_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="DD/MM/YYYY"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@id/dateButton"
+                    app:layout_constraintLeft_toRightOf="@id/dateButton"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/dateButton" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/timeButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:onClick="showTimePickerDialog"
+                    android:text="select time"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/dateButton" />
+
+                <TextView
+                    android:id="@+id/time_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="HH:MM"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@id/timeButton"
+                    app:layout_constraintLeft_toRightOf="@id/timeButton"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/timeButton" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:gravity="center"
-            android:hint="Task Description"
-            app:layout_constraintTop_toBottomOf="@id/TaskTitle"
+            android:layout_margin="20dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:inputType="text"/>
+            app:layout_constraintTop_toBottomOf="@id/date_time_card">
 
-        <TextView
-            android:id="@+id/tv_p"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/TaskDescription"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:text="Select a priority for task:"
-            android:layout_marginTop="10dp"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/EditTextGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/submit_button"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/date_time_view"
+                app:layout_constraintVertical_bias="0.201">
 
-        <com.google.android.material.button.MaterialButtonToggleGroup
-            android:id="@+id/toggle_button_group"
-            android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/TaskTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp"
+                    android:gravity="center"
+                    android:hint="Task Title"
+                    android:inputType="text"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/TaskDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:gravity="center"
+                    android:hint="Task Description"
+                    android:inputType="text"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/TaskTitle" />
+
+                <TextView
+                    android:id="@+id/tv_p"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Select a priority for task:"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/TaskDescription" />
+
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/toggle_button_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    app:checkedButton="@id/btn_high"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_p"
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_low"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:checkable="true"
+                        android:text="low" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_med"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:checkable="true"
+                        android:text="med" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_high"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:checkable="true"
+                        android:text="high" />
+
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/submit_button"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:checkedButton="@id/btn_high"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="45dp"
+            android:layout_marginBottom="40dp"
+            android:onClick="onSaveTaskButtonClick"
+            android:text="save to database"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_p"
-            app:selectionRequired="true"
-            app:singleSelection="true"
-            android:layout_marginBottom="15dp">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_low"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:checkable="true"
-                android:text="low" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_med"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:checkable="true"
-                android:text="med" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_high"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:checkable="true"
-                android:text="high" />
-
-        </com.google.android.material.button.MaterialButtonToggleGroup>
-
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/submit_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="45dp"
-        android:layout_marginRight="45dp"
-        android:layout_marginBottom="40dp"
-        android:onClick="onSaveTaskButtonClick"
-        android:text="save to database"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
