@@ -16,6 +16,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/date_time_card"
+            style="@style/CardView.White"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
@@ -85,6 +86,7 @@
 
 
         <com.google.android.material.card.MaterialCardView
+            style="@style/CardView.White"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
@@ -107,7 +109,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="30dp"
                     android:gravity="center"
                     android:hint="Task Title"
@@ -141,10 +143,11 @@
 
                 <com.google.android.material.button.MaterialButtonToggleGroup
                     android:id="@+id/toggle_button_group"
+                    style="@style/Button.Blue.Group"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
-                    app:checkedButton="@id/btn_high"
+                    app:checkedButton="@id/btn_low"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -154,6 +157,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_low"
+                        style="@style/Button.Blue.Group"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:checkable="true"
@@ -161,6 +165,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_med"
+                        style="@style/Button.Blue.Group"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:checkable="true"
@@ -168,6 +173,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_high"
+                        style="@style/Button.Blue.Group"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:checkable="true"

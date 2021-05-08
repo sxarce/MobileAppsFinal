@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -48,7 +49,7 @@ public class TaskAdapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) mActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         taskLine = inflater.inflate(R.layout.task_layout, parent, false);
 
-        ConstraintLayout task_view = taskLine.findViewById(R.id.task_view);
+        LinearLayout task_view = taskLine.findViewById(R.id.task_view);
         TextView tv_hour = taskLine.findViewById(R.id.tv_hour);
         TextView tv_min = taskLine.findViewById(R.id.tv_min);
         TextView tv_timetype = taskLine.findViewById(R.id.tv_timetype);

@@ -8,6 +8,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/date_card"
+        style="@style/CardView.White"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,11 +26,13 @@
         app:layout_constraintRight_toRightOf="parent"
         android:textSize="24sp"
         android:gravity="center"
+        android:padding="20dp"
         android:text="date"
         />
     </com.google.android.material.card.MaterialCardView>
 
 <com.google.android.material.card.MaterialCardView
+    style="@style/CardView.White"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:layout_constraintTop_toBottomOf="@id/date_card"

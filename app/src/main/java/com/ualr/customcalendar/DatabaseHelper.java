@@ -83,7 +83,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getDataForDate(int month, int day, int year){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_NAME + " WHERE "+ COL2 +"=" + year + " and " + COL3 + "=" + month + " and " + COL4 + "=" + day;
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE "+ COL2 +"=" + year + " and " + COL3 + "=" + month + " and " + COL4 + "=" + day + " ORDER BY " + COL7 + ", " + COL5 + " ASC, " + COL6 + " ASC";
         //String query1 = String.format("SELECT * FROM %d WHERE", TABLE_NAME);
         Cursor data = db.rawQuery(query, null);
         return data;

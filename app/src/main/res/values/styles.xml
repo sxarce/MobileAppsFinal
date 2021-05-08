@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Button.Blue.Group" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textColor">@color/btn_group_txt</item>
+        <item name="backgroundTint">@color/btn_group_bg</item>
+    </style>
+
+    <style name="CardView.White" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@android:color/white</item>
+        <item name="cardCornerRadius">@dimen/card_corner_radius</item>
+        <item name="cardElevation">@dimen/card_elevation</item>
+        <item name="cardUseCompatPadding">true</item>
+    </style>
+
+    <style name="Button.Blue.Borderless" parent="@style/Widget.AppCompat.Button.Borderless.Colored">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="colorButtonNormal">@color/blue_400</item>
+    </style>
+
+</resources>
