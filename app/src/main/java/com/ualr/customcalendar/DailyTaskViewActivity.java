@@ -2,13 +2,13 @@ package com.ualr.customcalendar;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.icu.text.SimpleDateFormat;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,8 +21,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.security.PublicKey;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -30,6 +28,7 @@ public class DailyTaskViewActivity extends AppCompatActivity implements DatePick
 
     public static final String EXTRA_CONTACT = "Database";
     static final int TASK_CODE_REQUEST = 1;
+    static final int TASK_UPDATE_CODE_REQUEST = 2;
     static final String TASK_KEY = "TaskCode";
     private static final String TAG = "DailyTaskView";
     DatabaseHelper mDatabaseHelper;
@@ -116,6 +115,29 @@ public class DailyTaskViewActivity extends AppCompatActivity implements DatePick
         }
         adapter = new TaskAdapter(this, listData);
         mListView.setAdapter(adapter);
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Task task = (Task) adapterView.getItemAtPosition(i);
+                Log.d(TAG, "onItemClick: You Clicked on " + task.getTitle());
+
+                Cursor data = mDatabaseHelper.getItemID(task.getTitle(), task.getDescription());
+                int itemID = -1;
+                while(data.moveToNext()){
+                    itemID = data.getInt(0);
+                }
+                if(itemID > -1){
+                    Log.d(TAG, "onItemClick: the ID is: " + itemID);
+                    Intent editTaskIntent = new Intent(DailyTaskViewActivity.this, EditDataActivity.class);
+                    editTaskIntent.putExtra("id", itemID);
+                    editTaskIntent.putExtra("task", task);
+                    startActivityForResult(editTaskIntent, TASK_UPDATE_CODE_REQUEST);
+                }else{
+                    toastMessage("No ID associated with that task");
+                }
+            }
+        });
     }
 
     @Override
@@ -146,6 +168,9 @@ public class DailyTaskViewActivity extends AppCompatActivity implements DatePick
             AddData(newTask.getYear(), newTask.getMonth(), newTask.getDay(), newTask.getHour(),
                     newTask.getMin(), newTask.getTimeType(), newTask.getTitle(), newTask.getPriority(), newTask.getDescription());
 
+            populateListViewFromDate(cMonth, cDay, cYear);
+        }
+        else if(requestCode == TASK_UPDATE_CODE_REQUEST && resultCode == RESULT_OK){
             populateListViewFromDate(cMonth, cDay, cYear);
         }
 

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/grey_200"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/data_card"
+            style="@style/CardView.White"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/EditTextGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/submit_button"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/date_time_view"
+                app:layout_constraintVertical_bias="0.201">
+
+                <EditText
+                    android:id="@+id/et_newTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="30dp"
+                    android:gravity="center"
+                    android:hint="Task Title"
+                    android:inputType="text"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/et_newDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:gravity="center"
+                    android:hint="Task Description"
+                    android:inputType="text"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_newTitle" />
+
+                <TextView
+                    android:id="@+id/tv_p"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Select a priority for task:"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_newDescription" />
+
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/new_priority_button_group"
+                    style="@style/Button.Blue.Group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_p"
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/new_btn_low"
+                        style="@style/Button.Blue.Group"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:checkable="true"
+                        android:text="low" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/new_btn_med"
+                        style="@style/Button.Blue.Group"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:checkable="true"
+                        android:text="med" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/new_btn_high"
+                        style="@style/Button.Blue.Group"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:checkable="true"
+                        android:text="high" />
+
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/data_card"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="15dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onDelete"
+                android:text="Delete"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/update_delete"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/update_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onUpdatebtnClick"
+                android:text="Update"
+                app:layout_constraintLeft_toRightOf="@id/btn_delete"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

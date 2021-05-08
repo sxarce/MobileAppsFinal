@@ -88,4 +88,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor data = db.rawQuery(query, null);
         return data;
     }
+
+    public Cursor getItemID(String title, String description){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT " + COL1 + " FROM " + TABLE_NAME + " WHERE " + COL8 + " = '" + title + "'";
+        Cursor data = db.rawQuery(query, null);
+        return data;
+    }
+
+    public void updateTask(int id, String newTitle, String newDescription, int newPriority) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE " + TABLE_NAME + " SET " + COL8 + " = '" + newTitle + "', " + COL9 + " " +
+                "= '" + newPriority + "', " + COL10 + " = '" + newDescription + "' WHERE " + COL1 + " = '" + id + "'";
+
+        Log.d(TAG, "Query:" + query);
+        db.execSQL(query);
+    }
+
+    public void deleteTask(int id){
+        SQLiteDatabase db =  this.getWritableDatabase();
+        String query = "DELETE FROM " + TABLE_NAME + " WHERE " + COL1 + " = '" + id+ "'";
+        db.execSQL(query);
+    }
 }
