@@ -13,15 +13,11 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/data_card"
             style="@style/CardView.White"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -33,42 +29,33 @@
                 app:layout_constraintBottom_toTopOf="@+id/submit_button"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/date_time_view"
-                app:layout_constraintVertical_bias="0.201">
+                app:layout_constraintTop_toBottomOf="@id/date_time_view">
 
                 <EditText
                     android:id="@+id/et_newTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    style="@style/EditTextFields"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="30dp"
-                    android:gravity="center"
-                    android:hint="Task Title"
-                    android:inputType="text"
+                    android:hint="@string/title_hint"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:autofillHints="@string/description_hint" />
 
                 <EditText
                     android:id="@+id/et_newDescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:gravity="center"
-                    android:hint="Task Description"
-                    android:inputType="text"
+                    style="@style/EditTextFields"
+                    android:hint="@string/description_hint"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/et_newTitle" />
+                    app:layout_constraintTop_toBottomOf="@id/et_newTitle"
+                    android:autofillHints="@string/description_hint" />
 
                 <TextView
                     android:id="@+id/tv_p"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Select a priority for task:"
+                    android:text="@string/priority_prompt"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/et_newDescription" />
@@ -92,7 +79,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:checkable="true"
-                        android:text="low" />
+                        android:text="@string/low_btn" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/new_btn_med"
@@ -100,7 +87,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:checkable="true"
-                        android:text="med" />
+                        android:text="@string/medium_btn" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/new_btn_high"
@@ -108,7 +95,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:checkable="true"
-                        android:text="high" />
+                        android:text="@string/high_btn" />
 
                 </com.google.android.material.button.MaterialButtonToggleGroup>
 
@@ -129,7 +116,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onDelete"
-                android:text="Delete"
+                android:text="@string/delete_btn"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/update_delete"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -139,7 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onUpdatebtnClick"
-                android:text="Update"
+                android:text="@string/update_btn"
                 app:layout_constraintLeft_toRightOf="@id/btn_delete"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

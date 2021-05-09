@@ -1,5 +1,19 @@
 <resources>
-    <string name="app_name">CustomCalendar</string>
+    <string name="app_name">DailyTasks</string>
     <string name="save">Save</string>
     <string name="event_name">Event Name</string>
+    <string name="sel_date_btn">Select Date</string>
+    <string name="sel_time_btn">Select Time</string>
+    <string name ="date_hint">DD/MM/YYYY</string>
+    <string name="time_hint">HH:MM</string>
+    <string name="title_hint">Task Title</string>
+    <string name="description_hint">Task Description</string>
+    <string name="priority_prompt">Select a priority for task:</string>
+    <string name="low_btn">Low</string>
+    <string name="medium_btn">Medium</string>
+    <string name="high_btn">High</string>
+    <string name="save_btn">Add Task</string>
+    <string name="select_date_button">Select Date Button</string>
+    <string name="delete_btn">Delete</string>
+    <string name="update_btn">Update</string>
 </resources>

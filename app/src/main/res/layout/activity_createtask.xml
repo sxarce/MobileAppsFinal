@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -17,9 +16,6 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/date_time_card"
             style="@style/CardView.White"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -36,11 +32,12 @@
                     android:id="@+id/dateButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="@dimen/spacing_middle"
+                    android:layout_marginLeft="@dimen/spacing_middle"
+                    android:layout_marginTop="@dimen/spacing_large"
                     android:gravity="center"
                     android:onClick="showDatePickerDialog"
-                    android:text="select date"
+                    android:text="@string/sel_date_btn"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,7 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:hint="DD/MM/YYYY"
+                    android:hint="@string/date_hint"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@id/dateButton"
                     app:layout_constraintLeft_toRightOf="@id/dateButton"
@@ -60,11 +57,12 @@
                     android:id="@+id/timeButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="@dimen/spacing_middle"
+                    android:layout_marginLeft="@dimen/spacing_middle"
                     android:layout_marginBottom="15dp"
                     android:gravity="center"
                     android:onClick="showTimePickerDialog"
-                    android:text="select time"
+                    android:text="@string/sel_time_btn"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/dateButton" />
@@ -74,7 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:hint="HH:MM"
+                    android:hint="@string/time_hint"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@id/timeButton"
                     app:layout_constraintLeft_toRightOf="@id/timeButton"
@@ -87,9 +85,6 @@
 
         <com.google.android.material.card.MaterialCardView
             style="@style/CardView.White"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/date_time_card">
@@ -101,32 +96,23 @@
                 app:layout_constraintBottom_toTopOf="@+id/submit_button"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/date_time_view"
-                app:layout_constraintVertical_bias="0.201">
+                app:layout_constraintTop_toBottomOf="@id/date_time_view">
 
                 <EditText
                     android:id="@+id/TaskTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    style="@style/EditTextFields"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="30dp"
-                    android:gravity="center"
-                    android:hint="Task Title"
-                    android:inputType="text"
+                    android:autofillHints="@string/title_hint"
+                    android:hint="@string/title_hint"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
                     android:id="@+id/TaskDescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:gravity="center"
-                    android:hint="Task Description"
-                    android:inputType="text"
+                    style="@style/EditTextFields"
+                    android:autofillHints="@string/title_hint"
+                    android:hint="@string/description_hint"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/TaskTitle" />
@@ -136,7 +122,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Select a priority for task:"
+                    android:text="@string/priority_prompt"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/TaskDescription" />
@@ -161,7 +147,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:checkable="true"
-                        android:text="low" />
+                        android:text="@string/low_btn" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_med"
@@ -169,7 +155,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:checkable="true"
-                        android:text="med" />
+                        android:text="@string/medium_btn" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_high"
@@ -177,7 +163,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:checkable="true"
-                        android:text="high" />
+                        android:text="@string/high_btn" />
 
                 </com.google.android.material.button.MaterialButtonToggleGroup>
 
@@ -193,7 +179,7 @@
             android:layout_marginRight="45dp"
             android:layout_marginBottom="40dp"
             android:onClick="onSaveTaskButtonClick"
-            android:text="save to database"
+            android:text="@string/save_btn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
