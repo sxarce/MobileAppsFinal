@@ -182,7 +182,7 @@ public class DailyTaskViewActivity extends AppCompatActivity implements DatePick
                 title, priority, description);
 
         if (insertData) {
-            toastMessage("Data Successfully Inserted!");
+            toastMessage("Task Successfully Added!");
         } else {
             toastMessage("Something went wrong");
         }

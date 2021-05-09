@@ -2,6 +2,7 @@ package com.ualr.customcalendar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
@@ -51,20 +52,24 @@ public class EditDataActivity extends AppCompatActivity {
     }
 
     public void onUpdatebtnClick(View view) {
-        String newTitle = new_title.getText().toString();
-        String newDescription = new_description.getText().toString();
-        int newPriority = 0;
+        if (TextUtils.isEmpty(new_title.getText())){
+            new_title.setError("Please enter a title");
+        }else {
+            String newTitle = new_title.getText().toString();
+            String newDescription = new_description.getText().toString();
+            int newPriority = 0;
 
-        if(low.isChecked()) newPriority = 0;
-        else if(mid.isChecked()) newPriority = 1;
-        else if(high.isChecked()) newPriority = 2;
+            if (low.isChecked()) newPriority = 0;
+            else if (mid.isChecked()) newPriority = 1;
+            else if (high.isChecked()) newPriority = 2;
 
-        mDatabaseHelper.updateTask(selectedID, newTitle, newDescription, newPriority);
+            mDatabaseHelper.updateTask(selectedID, newTitle, newDescription, newPriority);
 
-        Intent intent = getIntent();
-        intent.putExtra(DailyTaskViewActivity.TASK_KEY, 1);
-        setResult(DailyTaskViewActivity.RESULT_OK, intent);
-        finish();
+            Intent intent = getIntent();
+            intent.putExtra(DailyTaskViewActivity.TASK_KEY, 1);
+            setResult(DailyTaskViewActivity.RESULT_OK, intent);
+            finish();
+        }
     }
 
     public void onDelete(View view){
