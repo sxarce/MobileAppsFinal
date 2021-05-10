@@ -4,6 +4,18 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Task implements Parcelable {
+
+    public static final Creator<Task> CREATOR = new Creator<Task>() {
+        @Override
+        public Task createFromParcel(Parcel in) {
+            return new Task(in);
+        }
+
+        @Override
+        public Task[] newArray(int size) {
+            return new Task[size];
+        }
+    };
     int year;
     int month;
     int day;
@@ -28,18 +40,6 @@ public class Task implements Parcelable {
         this.priority = priority;
         this.description = description;
     }
-
-    public static final Creator<Task> CREATOR = new Creator<Task>() {
-        @Override
-        public Task createFromParcel(Parcel in) {
-            return new Task(in);
-        }
-
-        @Override
-        public Task[] newArray(int size) {
-            return new Task[size];
-        }
-    };
 
     public Task(Parcel in) {
         this.year = in.readInt();
@@ -142,5 +142,4 @@ public class Task implements Parcelable {
         parcel.writeInt(this.priority);
         parcel.writeString(this.description);
     }
-
 }

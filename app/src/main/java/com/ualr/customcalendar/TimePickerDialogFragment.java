@@ -21,10 +21,6 @@ public class TimePickerDialogFragment extends DialogFragment implements TimePick
 
     NoticeDialogListener listener;
 
-    public interface NoticeDialogListener{
-        void onDialogTimeClick(int hourOfDay, int minute, String timeType, String time);
-    }
-
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -53,17 +49,21 @@ public class TimePickerDialogFragment extends DialogFragment implements TimePick
         String time = "";
         String timeType = "";
 
-        if(hourOfDay > 12){
-            hourOfDay = hourOfDay -12;
+        if (hourOfDay > 12) {
+            hourOfDay = hourOfDay - 12;
             timeType = "PM";
-            time =hourOfDay+ ":" + minute +" " + timeType;
-        }
-        else{
+        } else {
             timeType = "AM";
-            time = hourOfDay + ":" + minute + " " + timeType;
         }
+        String hour = String.format("%02d", hourOfDay);
+        String min = String.format("%02d", minute);
+        time = hour + ":" + min + " " + timeType;
         listener.onDialogTimeClick(hourOfDay, minute, timeType, time);
 
+    }
+
+    public interface NoticeDialogListener {
+        void onDialogTimeClick(int hourOfDay, int minute, String timeType, String time);
     }
 }
 

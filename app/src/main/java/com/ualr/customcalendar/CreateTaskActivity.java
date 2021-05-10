@@ -1,33 +1,29 @@
 package com.ualr.customcalendar;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.material.button.MaterialButton;
-import com.ualr.customcalendar.databinding.ActivityCreatetaskBinding;
-
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CreateTaskActivity extends AppCompatActivity implements DatePickerDialogFragment.NoticeDialogListener,TimePickerDialogFragment.NoticeDialogListener{
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.button.MaterialButton;
+import com.ualr.customcalendar.databinding.ActivityCreatetaskBinding;
+
+public class CreateTaskActivity extends AppCompatActivity implements DatePickerDialogFragment.NoticeDialogListener, TimePickerDialogFragment.NoticeDialogListener {
 
     private static final String FRAGMENT_TAG = "SaveDialog";
+    private static final String TAG = CreateTaskActivity.class.getSimpleName();
     public int nDay, nMonth, nYear, nMin, nHour;
     public String nTimeType;
-
+    DatabaseHelper mDatabaseHelper;
     private ActivityCreatetaskBinding mBinding;
-    private static final String TAG = CreateTaskActivity.class.getSimpleName();
     private TextView dateTV, timeTV;
     private EditText titleET, descriptionET;
     private Task newTask;
-    DatabaseHelper mDatabaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +47,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
     }
 
     @Override
-    public void onDialogDateClick(int month, int day, int year, String date){
+    public void onDialogDateClick(int month, int day, int year, String date) {
         nMonth = month;
         nDay = day;
         nYear = year;
@@ -59,14 +55,14 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
     }
 
     @Override
-    public void onDialogTimeClick(int hour, int min, String type, String time){
+    public void onDialogTimeClick(int hour, int min, String type, String time) {
         nHour = hour;
         nMin = min;
         nTimeType = type;
         this.timeTV.setText(time);
     }
 
-    public void onSaveTaskButtonClick(View view){
+    public void onSaveTaskButtonClick(View view) {
         String task = this.titleET.getText().toString();
         int task_priority = 0;
         String task_description = this.descriptionET.getText().toString();
@@ -76,19 +72,16 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         p_mid = findViewById(R.id.btn_med);
         p_high = findViewById(R.id.btn_high);
 
-        if( TextUtils.isEmpty(dateTV.getText())){
-            dateTV.setError( "Please select a date" );
+        if (TextUtils.isEmpty(dateTV.getText())) {
+            dateTV.setError("Please select a date");
             toastMessage("Please set a date");
-        }
-        else if (TextUtils.isEmpty(timeTV.getText())) {
+        } else if (TextUtils.isEmpty(timeTV.getText())) {
             timeTV.setError("Please set a time");
             toastMessage("Please set a time");
-        }
-        else if (TextUtils.isEmpty(titleET.getText())){
+        } else if (TextUtils.isEmpty(titleET.getText())) {
             titleET.setError("Please set a title");
             toastMessage("Please set a title");
-        }
-        else {
+        } else {
             if (p_low.isChecked()) task_priority = 0;
             else if (p_mid.isChecked()) task_priority = 1;
             else task_priority = 2;

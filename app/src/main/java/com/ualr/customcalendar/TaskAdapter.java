@@ -2,18 +2,13 @@ package com.ualr.customcalendar;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 
@@ -22,7 +17,7 @@ public class TaskAdapter extends BaseAdapter {
     Activity mActivity;
     ArrayList<Task> mTasks;
 
-    public TaskAdapter(Activity mActivity, ArrayList<Task> mTasks){
+    public TaskAdapter(Activity mActivity, ArrayList<Task> mTasks) {
         this.mActivity = mActivity;
         this.mTasks = mTasks;
     }
@@ -57,7 +52,6 @@ public class TaskAdapter extends BaseAdapter {
         TextView tv_description = taskLine.findViewById(R.id.tv_description);
 
 
-
         Task t = this.getItem(position);
         String hour = String.format("%02d", t.getHour());
         String min = String.format("%02d", t.getMin());
@@ -70,11 +64,11 @@ public class TaskAdapter extends BaseAdapter {
         tv_description.setText(t.getDescription());
 
         int priority = t.getPriority();
-        if(priority == 0){
+        if (priority == 0) {
             task_view.setBackgroundColor(Color.parseColor("#94ffab"));
-        }else if(priority == 1){
+        } else if (priority == 1) {
             task_view.setBackgroundColor(Color.parseColor("#ffff91"));
-        }else{
+        } else {
             task_view.setBackgroundColor(Color.parseColor("#ffa294"));
         }
 

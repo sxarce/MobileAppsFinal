@@ -67,12 +67,12 @@ public class DailyTaskViewActivity extends AppCompatActivity implements DatePick
         cMonthText = getMonth(cMonth);
         cDayWeek = c.get(Calendar.DAY_OF_WEEK);
         dayOfWeek = getDayOfWeek(cDayWeek);
-        if(cDay == 1) dayPost = "st";
-        else if(cDay == 2) dayPost = "nd";
+        if (cDay == 1) dayPost = "st";
+        else if (cDay == 2) dayPost = "nd";
         else if (cDay == 3) dayPost = "rd";
         else dayPost = "th";
 
-        datetv.setText(String.format(dayOfWeek+", "+cMonthText+ " %d"+dayPost+", %d", cDay, cYear));
+        datetv.setText(String.format(dayOfWeek + ", " + cMonthText + " %d" + dayPost + ", %d", cDay, cYear));
     }
 
     private void populateListView() {
@@ -116,7 +116,7 @@ public class DailyTaskViewActivity extends AppCompatActivity implements DatePick
         adapter = new TaskAdapter(this, listData);
         mListView.setAdapter(adapter);
 
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Task task = (Task) adapterView.getItemAtPosition(i);
@@ -124,16 +124,16 @@ public class DailyTaskViewActivity extends AppCompatActivity implements DatePick
 
                 Cursor data = mDatabaseHelper.getItemID(task.getTitle(), task.getDescription());
                 int itemID = -1;
-                while(data.moveToNext()){
+                while (data.moveToNext()) {
                     itemID = data.getInt(0);
                 }
-                if(itemID > -1){
+                if (itemID > -1) {
                     Log.d(TAG, "onItemClick: the ID is: " + itemID);
                     Intent editTaskIntent = new Intent(DailyTaskViewActivity.this, EditDataActivity.class);
                     editTaskIntent.putExtra("id", itemID);
                     editTaskIntent.putExtra("task", task);
                     startActivityForResult(editTaskIntent, TASK_UPDATE_CODE_REQUEST);
-                }else{
+                } else {
                     toastMessage("No ID associated with that task");
                 }
             }
@@ -169,8 +169,7 @@ public class DailyTaskViewActivity extends AppCompatActivity implements DatePick
                     newTask.getMin(), newTask.getTimeType(), newTask.getTitle(), newTask.getPriority(), newTask.getDescription());
 
             populateListViewFromDate(cMonth, cDay, cYear);
-        }
-        else if(requestCode == TASK_UPDATE_CODE_REQUEST && resultCode == RESULT_OK){
+        } else if (requestCode == TASK_UPDATE_CODE_REQUEST && resultCode == RESULT_OK) {
             populateListViewFromDate(cMonth, cDay, cYear);
         }
 
@@ -208,8 +207,8 @@ public class DailyTaskViewActivity extends AppCompatActivity implements DatePick
         populateListViewFromDate(cMonth, cDay, cYear);
     }
 
-    public String getMonth(int month){
-        switch (month){
+    public String getMonth(int month) {
+        switch (month) {
             case 1:
                 return "January";
             case 2:
@@ -239,13 +238,13 @@ public class DailyTaskViewActivity extends AppCompatActivity implements DatePick
         }
     }
 
-    public String getDayOfWeek(int dayWeek){
-        if(dayWeek == c.SUNDAY) return "Sunday";
-        else if(dayWeek == c.MONDAY) return "Monday";
-        else if(dayWeek == c.TUESDAY) return "Tuesday";
-        else if(dayWeek == c.WEDNESDAY) return "Wednesday";
-        else if(dayWeek == c.THURSDAY) return "Thursday";
-        else if(dayWeek == c.FRIDAY) return "Friday";
+    public String getDayOfWeek(int dayWeek) {
+        if (dayWeek == Calendar.SUNDAY) return "Sunday";
+        else if (dayWeek == Calendar.MONDAY) return "Monday";
+        else if (dayWeek == Calendar.TUESDAY) return "Tuesday";
+        else if (dayWeek == Calendar.WEDNESDAY) return "Wednesday";
+        else if (dayWeek == Calendar.THURSDAY) return "Thursday";
+        else if (dayWeek == Calendar.FRIDAY) return "Friday";
         else return "Saturday";
     }
 }

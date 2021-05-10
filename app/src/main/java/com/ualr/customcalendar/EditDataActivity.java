@@ -15,14 +15,11 @@ import com.google.android.material.button.MaterialButtonToggleGroup;
 public class EditDataActivity extends AppCompatActivity {
 
     private static final String TAG = "EditDataActivity";
-
+    MaterialButton low, mid, high;
+    DatabaseHelper mDatabaseHelper;
     private EditText new_title, new_description;
     private int priority;
     private MaterialButtonToggleGroup priority_selection_group;
-    MaterialButton low, mid, high;
-
-    DatabaseHelper mDatabaseHelper;
-
     private Task selectedTask;
     private int selectedID;
 
@@ -46,15 +43,15 @@ public class EditDataActivity extends AppCompatActivity {
         new_description.setText(selectedTask.getDescription());
         priority = selectedTask.getPriority();
 
-        if(priority == 0) priority_selection_group.check(R.id.new_btn_low);
-        else if(priority == 1) priority_selection_group.check(R.id.new_btn_med);
-        else if(priority == 2) priority_selection_group.check(R.id.new_btn_high);
+        if (priority == 0) priority_selection_group.check(R.id.new_btn_low);
+        else if (priority == 1) priority_selection_group.check(R.id.new_btn_med);
+        else if (priority == 2) priority_selection_group.check(R.id.new_btn_high);
     }
 
     public void onUpdatebtnClick(View view) {
-        if (TextUtils.isEmpty(new_title.getText())){
+        if (TextUtils.isEmpty(new_title.getText())) {
             new_title.setError("Please enter a title");
-        }else {
+        } else {
             String newTitle = new_title.getText().toString();
             String newDescription = new_description.getText().toString();
             int newPriority = 0;
@@ -72,7 +69,7 @@ public class EditDataActivity extends AppCompatActivity {
         }
     }
 
-    public void onDelete(View view){
+    public void onDelete(View view) {
         mDatabaseHelper.deleteTask(selectedID);
 
         Intent intent = getIntent();
