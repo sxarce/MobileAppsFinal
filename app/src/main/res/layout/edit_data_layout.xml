@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,85 +10,17 @@
         android:layout_height="match_parent"
         android:background="@color/grey_200"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/date_time_card"
+            android:id="@+id/data_card"
             style="@style/CardView.White"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/date_time_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/dateButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_middle"
-                    android:layout_marginLeft="@dimen/spacing_middle"
-                    android:layout_marginTop="@dimen/spacing_large"
-                    android:gravity="center"
-                    android:onClick="showDatePickerDialog"
-                    android:text="@string/sel_date_btn"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/date_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:hint="@string/date_hint"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="@id/dateButton"
-                    app:layout_constraintLeft_toRightOf="@id/dateButton"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/dateButton" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/timeButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_middle"
-                    android:layout_marginLeft="@dimen/spacing_middle"
-                    android:layout_marginBottom="15dp"
-                    android:gravity="center"
-                    android:onClick="showTimePickerDialog"
-                    android:text="@string/sel_time_btn"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/dateButton" />
-
-                <TextView
-                    android:id="@+id/time_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:hint="@string/time_hint"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="@id/timeButton"
-                    app:layout_constraintLeft_toRightOf="@id/timeButton"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/timeButton" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-
-        <com.google.android.material.card.MaterialCardView
-            style="@style/CardView.White"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/date_time_card">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/EditTextGroup"
@@ -99,25 +32,25 @@
                 app:layout_constraintTop_toBottomOf="@id/date_time_view">
 
                 <EditText
-                    android:id="@+id/TaskTitle"
+                    android:id="@+id/et_newTitle"
                     style="@style/EditTextFields"
                     android:layout_marginTop="10dp"
-                    android:autofillHints="@string/title_hint"
+                    android:autofillHints="@string/description_hint"
                     android:hint="@string/title_hint"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:inputType="text" />
 
-
                 <EditText
-                    android:id="@+id/TaskDescription"
+                    android:id="@+id/et_newDescription"
                     style="@style/EditTextFields"
                     android:ems="10"
+                    android:gravity="center"
                     android:inputType="textMultiLine"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/TaskTitle"
+                    app:layout_constraintTop_toBottomOf="@id/et_newTitle"
                     android:hint="@string/description_hint"
                     android:autofillHints="@string/description_hint" />
 
@@ -129,15 +62,14 @@
                     android:text="@string/priority_prompt"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/TaskDescription" />
+                    app:layout_constraintTop_toBottomOf="@id/et_newDescription" />
 
                 <com.google.android.material.button.MaterialButtonToggleGroup
-                    android:id="@+id/toggle_button_group"
+                    android:id="@+id/new_priority_button_group"
                     style="@style/Button.Blue.Group"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
-                    app:checkedButton="@id/btn_low"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -146,7 +78,7 @@
                     app:singleSelection="true">
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_low"
+                        android:id="@+id/new_btn_low"
                         style="@style/Button.Blue.Group"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -154,7 +86,7 @@
                         android:text="@string/low_btn" />
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_med"
+                        android:id="@+id/new_btn_med"
                         style="@style/Button.Blue.Group"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -162,7 +94,7 @@
                         android:text="@string/medium_btn" />
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_high"
+                        android:id="@+id/new_btn_high"
                         style="@style/Button.Blue.Group"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -172,21 +104,40 @@
                 </com.google.android.material.button.MaterialButtonToggleGroup>
 
 
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/submit_button"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="45dp"
-            android:layout_marginRight="45dp"
-            android:layout_marginBottom="40dp"
-            android:onClick="onSaveTaskButtonClick"
-            android:text="@string/save_btn"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="15dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/data_card">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onDelete"
+                android:text="@string/delete_btn"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/update_delete"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/update_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onUpdatebtnClick"
+                android:text="@string/update_btn"
+                app:layout_constraintLeft_toRightOf="@id/btn_delete"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
